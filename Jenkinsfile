@@ -3,6 +3,7 @@ node {
  checkout scm
  }
  stage('Build & Unit test'){
+  echo 'building and unit testing...'
   withMaven(maven: 'M3'){
   sh 'mvn clean verify -DskipITs=true';
   }
@@ -10,11 +11,13 @@ node {
  archive 'target/*.jar'
  }
  stage('Static Code Analysis'){
+  echo 'performing static code analysis...'
   withMaven(maven: 'M3') {
   sh 'mvn clean verify sonar:sonar -Dsonar.projectName=example-project -Dsonar.projectKey=example-project -Dsonar.projectVersion=$BUILD_NUMBER';
   }
  }
  stage ('Integration Test'){
+  echo 'performing integration testing...'
   withMaven(maven: 'M3') {
   sh 'mvn clean verify -Dsurefire.skip=true';
   }
@@ -22,6 +25,7 @@ node {
  archive 'target/*.jar'
  }
  stage ('Publish'){
+  echo 'publishing the artifacts...'
  def server = Artifactory.server 'artifactory-service'
  def uploadSpec = """{
  "files": [
