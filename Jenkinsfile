@@ -16,8 +16,7 @@ node {
  archive 'target/*.jar'
  }
  stage ('Publish'){
- def server = Artifactory.server 'Default Artifactory
-Server'
+ def server = Artifactory.server 'artifactory-service'
  def uploadSpec = """{
  "files": [
  {
