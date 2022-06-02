@@ -16,8 +16,7 @@ pipeline{
             // SonarQube project name.
             // In this way, all our results will be visible under the
             // projectName=example-project that we created earlier in sonarqube
-            sh 'mvn clean verify sonar:sonar -Dsonar.projectName=example-project
-            -Dsonar.projectKey=example-project -Dsonar.projectVersion=$BUILD_NUMBER';
+            sh 'mvn clean verify sonar:sonar -Dsonar.projectName=example-project -Dsonar.projectKey=example-project -Dsonar.projectVersion=$BUILD_NUMBER';
         }
         stage('Integration Test'){
             sh 'mvn clean verify -Dsurefire.skip=true';
