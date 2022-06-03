@@ -51,7 +51,7 @@ pipeline{
                         {
                             "pattern": "target/hello-0.0.1.war",
                             "target": "helloworld-greeting-project/${BUILD_NUMBER}/",
-                            "props": "Integration-Tested=Yes; Performance-Tested=No"
+                            "props": "Integration_Tested=Yes;Performance_Tested=No;"
                         }
                     ]
                 }"""
