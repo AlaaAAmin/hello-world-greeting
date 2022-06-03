@@ -49,7 +49,7 @@ pipeline{
                 def uploadSpec = """{
                     "files": [
                         {
-                            "pattern": "target/hello-0.0.1.war",
+                            "pattern": "target/*.war",
                             "target": "helloworld-greeting-project/${BUILD_NUMBER}/",
                             "props": "Integration_Tested=Yes;Performance_Tested=No;"
                         }
