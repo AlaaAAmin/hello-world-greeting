@@ -28,7 +28,11 @@ pipeline{
             // SonarQube project name.
             // In this way, all our results will be visible under the
             // projectName=example-project that we created earlier in sonarqube
-            sh 'mvn clean verify sonar:sonar -Dsonar.projectName=example-project -Dsonar.projectKey=example-project -Dsonar.projectVersion=$BUILD_NUMBER';
+            // sh 'mvn clean verify sonar:sonar -Dsonar.projectName=example-project -Dsonar.projectKey=example-project -Dsonar.projectVersion=$BUILD_NUMBER';
+            mvn sonar:sonar \
+              -Dsonar.projectKey=example-project \
+              -Dsonar.host.url=http://localhost:9000 \
+              -Dsonar.login=40d1ac12eb9e07b02098fd23e77b48350f7cb9c4
             }
         }
         stage('Integration Test'){
