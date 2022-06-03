@@ -39,7 +39,7 @@ pipeline{
             steps {
                 sh 'mvn clean verify -Dsurefire.skip=true';
                 junit '**/target/failsafe-reports/TEST-*.xml'
-                archive 'target/*.jar'
+                archiveArtifacts 'target/*.jar'
             }
         }
         stage('Publish') {
