@@ -6,7 +6,9 @@ pipeline{
     agent any
     stages {
         stage('poll') {
-            checkout scm
+            steps {
+                checkout scm
+            }
         }
         stage('Build & Unit test') {
             steps {
@@ -33,7 +35,8 @@ pipeline{
         }
         stage('Publish') {
             steps {
-                // To upload the build artifacts to Artifactory, we will use the File Specs. 
+                script {
+                    // To upload the build artifacts to Artifactory, we will use the File Specs. 
                 def uploadSpec = """{
                     "files": [
                         {
@@ -45,6 +48,7 @@ pipeline{
                 }"""
                 // uploading the fileSpec variable to artifact server
                 server.upload(uploadSpec)
+                }
             }
         }
     }
