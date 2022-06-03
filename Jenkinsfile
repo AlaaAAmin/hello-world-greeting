@@ -4,6 +4,11 @@ def server = Artifactory.server "artifactory-service"
 
 pipeline{
     agent any
+    tools {
+    // tools specifies the plugins used for building, testing, deploying, ...etc
+    // syntax: tool-name 'tool installation name in jenkins'
+    maven "M3"
+    }
     stages {
         stage('poll') {
             steps {
